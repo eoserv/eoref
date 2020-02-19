@@ -1,0 +1,17 @@
+add_executable(eo_protocol_parser
+	src/ast.cpp
+	src/ast.hpp
+	src/common.cpp
+	src/common.hpp
+	src/eo_protocol.cpp
+	src/eo_protocol.hpp
+	src/eo_protocol_parser.cpp
+	src/eo_protocol_parser.hpp
+	src/lex.cpp
+	src/lex.hpp
+	src/main.cpp
+	src/parse.cpp
+	src/parse.hpp
+	src/printer.cpp
+	src/printer.hpp
+)

@@ -1,0 +1,43 @@
+set(TARGET_NAME eo-cio)
+
+set(TARGET_SOURCES
+	cio.cpp
+)
+
+set(TARGET_HEADERS
+	include/eo-cio/cio.hpp
+)
+
+# ---
+
+add_library(${TARGET_NAME}
+	${TARGET_SOURCES}
+	${TARGET_HEADERS}
+)
+
+target_include_directories(${TARGET_NAME}
+	PUBLIC
+		"$<INSTALL_INTERFACE:include>"
+		"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+)
+
+set_target_properties(${TARGET_NAME} PROPERTIES
+	PUBLIC_HEADER "${TARGET_HEADERS}"
+	CXX_STANDARD 17
+)
+
+# ---
+
+install(TARGETS ${TARGET_NAME}
+	EXPORT ${TARGET_NAME}-targets
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
+	PUBLIC_HEADER DESTINATION include
+)
+
+install(EXPORT ${TARGET_NAME}-targets
+	DESTINATION lib/cmake/${TARGET_NAME}
+	FILE ${TARGET_NAME}-config.cmake
+	EXPORT_LINK_INTERFACE_LIBRARIES
+)
